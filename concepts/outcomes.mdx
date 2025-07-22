@@ -1,0 +1,101 @@
+---
+title: "Understanding Call Outcomes"
+description: "Learn how CommVoice classifies the results of each AI-powered conversation to provide actionable insights."
+---
+
+## What are Call Outcomes?
+
+A call outcome is the final result of a conversation between an AI agent and a customer. CommVoice's AI automatically analyzes each conversation to determine the most appropriate outcome, providing you with a clear, at-a-glance understanding of how your campaigns are performing. This automated classification is a key feature that saves you time and provides valuable data for optimizing your strategies.
+
+### The Importance of Accurate Outcomes
+
+Accurate call outcomes are crucial for:
+
+*   **Performance Tracking:**  Measure the success of your campaigns and AI agents based on the outcomes they achieve.
+*   **Lead Management:**  Automatically route qualified leads to your sales team for immediate follow-up.
+*   **Workflow Automation:** Trigger specific actions in your CRM or other tools based on the call outcome.
+*   **Data Analysis:**  Gain insights into customer behavior and campaign effectiveness by analyzing the distribution of outcomes.
+
+## Standard Call Outcomes
+
+CommVoice provides a set of standard, pre-configured outcomes that cover the most common scenarios in sales and customer outreach:
+
+*   **Qualified Lead:** The customer meets your predefined criteria and is ready for the next step in the sales process.
+*   **Appointment Scheduled:** The AI agent successfully scheduled a meeting or demo.
+*   **Not Interested:** The customer explicitly stated that they are not interested in your product or service.
+*   **Follow-up Needed:** The customer expressed interest but needs more time or information before proceeding.
+*   **Gatekeeper:** The AI agent spoke with someone other than the intended contact, such as a receptionist or assistant.
+*   **Voicemail:** The call was answered by a voicemail machine.
+
+## Customizing Call Outcomes
+
+In addition to the standard outcomes, you can create custom outcomes that are specific to your business needs and campaign goals. This allows you to tailor the classification process to your unique sales funnel and terminology.
+
+For example, you might create custom outcomes such as:
+
+*   `Demo Requested`
+*   `Budget Confirmed`
+*   `Renewal Discussed`
+*   `Technical Support Inquiry`
+
+By defining custom outcomes, you can ensure that the data you collect is as relevant and actionable as possible.
+
+## How AI Determines Outcomes
+
+CommVoice's AI uses a combination of natural language processing, sentiment analysis, and pattern recognition to determine call outcomes. The AI analyzes the entire conversation, looking for key phrases, questions, and responses that indicate a particular result. This sophisticated analysis allows for a high degree of accuracy in outcome classification, even in complex or nuanced conversations.
+
+## Pixel Conversion Tracking
+
+Pixel Conversion tracking allows you to manually mark call outcomes as conversions for advanced analytics and attribution. This is particularly useful when you want to track specific business events like leads or sales that result from your AI calling campaigns.
+
+<Note>
+Unlike SMS or email campaigns where you can pass tracking parameters through links, voice calls require you to use the phone number and team_id to identify and mark conversions.
+</Note>
+
+### Tracking Lead Conversions
+
+To mark a call as a lead conversion, use the [Conversion Pixel API](/api-reference/conversionpixel/post-v1webhooksconversion-pixel):
+
+```bash
+curl --request POST \
+--url https://api.comm.com/api/v1/webhooks/conversion-pixel \
+--header 'Authorization: Bearer <token>' \
+--header 'Content-Type: application/json' \
+--data '{
+  "phone_number": "<string>",
+  "team_id": "<string>",
+  "object_type": "voice_call",
+  "event_type": "lead",
+  "is_lead": true
+}'
+```
+
+### Tracking Sales Conversions
+
+For sales events, you can also include the profit amount using the `event_profit` parameter:
+
+```bash
+curl --request POST \
+--url https://api.comm.com/api/v1/webhooks/conversion-pixel \
+--header 'Authorization: Bearer <token>' \
+--header 'Content-Type: application/json' \
+--data '{
+  "phone_number": "<string>",
+  "team_id": "<string>",
+  "object_type": "voice_call",
+  "event_type": "sale",
+  "event_profit": 99,
+  "is_lead": true,
+  "is_sale": true
+}'
+```
+
+### Finding Your Team ID
+
+To find your team ID for conversion tracking:
+
+1. Go to [app.commvoice.ai/my-account/profile](https://app.commvoice.ai/my-account/profile)
+2. Click on your profile icon
+3. Your team ID will be displayed in your profile information
+
+The `event_profit` parameter allows you to set the monetary value of the conversion, helping you calculate ROI and track the financial impact of your AI calling campaigns. 

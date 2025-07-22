@@ -1,431 +1,47 @@
 ---
 title: "API Authentication"
-description: "Learn how to authenticate and access the CommVoice API securely"
+description: "Learn how to authenticate and access the CommVoice API securely."
 ---
 
-## Overview
+## Getting Started with the CommVoice API
 
-The CommVoice API uses secure authentication methods to protect your call data and analytics. All API requests must include proper authentication credentials to access your account data.
+The CommVoice API allows you to programmatically manage your AI agents, campaigns, and contacts, as well as access your call data and analytics. To get started, you will need to authenticate your requests using an API key.
 
-<Note>
-API access is available on Business and Enterprise plans. Contact [support@commvoice.ai](mailto:support@commvoice.ai) to enable API access for your account.
-</Note>
+## Generating an API Key
 
-## Authentication Methods
-
-CommVoice supports two primary authentication methods:
-
-<Tabs>
-  <Tab title="API Keys">
-    **Best for**: Server-to-server integrations, automated workflows
-    
-    **Security**: Long-lived tokens with specific permissions
-    
-    **Usage**: Include in Authorization header for all requests
-    
-    ```bash
-    curl -H "Authorization: Bearer YOUR_API_KEY" \
-         -H "Content-Type: application/json" \
-         https://api.commvoice.ai/v1/calls
-    ```
-  </Tab>
-  
-  <Tab title="OAuth 2.0">
-    **Best for**: Third-party applications, user-facing integrations
-    
-    **Security**: Short-lived access tokens with refresh capability
-    
-    **Flow**: Standard OAuth 2.0 authorization code flow
-    
-    ```bash
-    curl -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
-         -H "Content-Type: application/json" \
-         https://api.commvoice.ai/v1/calls
-    ```
-  </Tab>
-</Tabs>
-
-## Getting API Keys
-
-### Generate Your API Key
+You can generate an API key from the Settings page in your CommVoice dashboard.
 
 <Steps>
-  <Step title="Access Settings">
-    Navigate to Settings → API Keys in your CommVoice dashboard.
+  <Step title="Navigate to API Settings">
+    Go to Settings → API Keys in your dashboard.
   </Step>
-  <Step title="Create New Key">
-    Click "Generate New API Key" and provide a descriptive name.
+  <Step title="Create a New Key">
+    Click "Generate New API Key" and give it a descriptive name.
   </Step>
   <Step title="Set Permissions">
-    Choose the specific permissions your integration needs:
-    - **Read Calls**: Access call data and analytics
-    - **Read Agents**: Access agent performance data  
-    - **Read Classifications**: Access AI classification results
-    - **Write Classifications**: Run new classifications
+    Choose the specific permissions that the key will have (e.g., read-only access to call data).
   </Step>
-  <Step title="Copy Key">
-    Copy your API key immediately - it won't be shown again for security.
-  </Step>
-  <Step title="Store Securely">
-    Store your API key in a secure environment variable or secrets manager.
+  <Step title="Copy and Store Your Key">
+    Copy the generated key and store it in a secure location. For security reasons, the key will only be displayed once.
   </Step>
 </Steps>
 
 <Warning>
-API keys provide access to sensitive call data. Never expose them in client-side code, version control, or public repositories.
+Treat your API keys like passwords. Never expose them in client-side code or commit them to version control.
 </Warning>
-
-### API Key Management
-
-<AccordionGroup>
-  <Accordion title="Key Rotation">
-    **Best Practice**: Rotate API keys regularly (recommended: every 90 days)
-    
-    **Process**:
-    1. Generate a new API key
-    2. Update your applications to use the new key
-    3. Test the integration thoroughly
-    4. Revoke the old key
-    
-    **Zero Downtime**: Keep both keys active during transition period
-  </Accordion>
-  
-  <Accordion title="Permission Scopes">
-    **Principle of Least Privilege**: Grant only the minimum permissions needed
-    
-    **Available Scopes**:
-    - `calls:read` - Read call data and metrics
-    - `calls:export` - Download call data exports
-    - `agents:read` - Access agent performance data
-    - `classifications:read` - Read AI classification results
-    - `classifications:write` - Run AI classifications
-    - `webhooks:manage` - Create and manage webhooks
-    
-    **Example**: A reporting integration only needs `calls:read` and `agents:read`
-  </Accordion>
-  
-  <Accordion title="Monitoring and Logs">
-    **Usage Tracking**: Monitor API key usage in the dashboard
-    
-    **Access Logs**: Review all API requests and IP addresses
-    
-    **Alerts**: Get notified of unusual activity or potential security issues
-    
-    **Rate Limiting**: Each key has usage limits to prevent abuse
-  </Accordion>
-</AccordionGroup>
-
-## OAuth 2.0 Setup
-
-### OAuth Flow
-
-For applications that need user authorization:
-
-<Steps>
-  <Step title="Register Application">
-    Register your application in the CommVoice developer portal to get client credentials.
-  </Step>
-  <Step title="Authorization Request">
-    Redirect users to the authorization endpoint with your client ID and requested scopes.
-  </Step>
-  <Step title="User Consent">
-    Users log in and grant permissions to your application.
-  </Step>
-  <Step title="Authorization Code">
-    CommVoice redirects back to your application with an authorization code.
-  </Step>
-  <Step title="Token Exchange">
-    Exchange the authorization code for an access token and refresh token.
-  </Step>
-</Steps>
-
-### OAuth Endpoints
-
-<CodeGroup>
-```bash Authorization URL
-https://app.commvoice.ai/oauth/authorize?
-  client_id=YOUR_CLIENT_ID&
-  redirect_uri=YOUR_REDIRECT_URI&
-  response_type=code&
-  scope=calls:read agents:read&
-  state=RANDOM_STATE_VALUE
-```
-
-```bash Token Exchange
-curl -X POST https://api.commvoice.ai/oauth/token \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "grant_type=authorization_code" \
-  -d "client_id=YOUR_CLIENT_ID" \
-  -d "client_secret=YOUR_CLIENT_SECRET" \
-  -d "code=AUTHORIZATION_CODE" \
-  -d "redirect_uri=YOUR_REDIRECT_URI"
-```
-
-```bash Refresh Token
-curl -X POST https://api.commvoice.ai/oauth/token \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "grant_type=refresh_token" \
-  -d "client_id=YOUR_CLIENT_ID" \
-  -d "client_secret=YOUR_CLIENT_SECRET" \
-  -d "refresh_token=YOUR_REFRESH_TOKEN"
-```
-</CodeGroup>
 
 ## Making Authenticated Requests
 
-### Request Headers
+To make an authenticated request, you will need to include your API key in the `Authorization` header of your request, using the `Bearer` authentication scheme.
 
-All API requests must include the Authorization header:
-
-<CodeGroup>
-```bash API Key
-Authorization: Bearer sk_live_1234567890abcdef
-Content-Type: application/json
-```
-
-```bash OAuth Token
-Authorization: Bearer at_1234567890abcdef
-Content-Type: application/json
-```
-</CodeGroup>
-
-### Example Requests
-
-<CodeGroup>
-```bash Get Calls
+```bash
 curl -H "Authorization: Bearer YOUR_API_KEY" \
      -H "Content-Type: application/json" \
-     "https://api.commvoice.ai/v1/calls?limit=10&from_date=2024-01-01"
+     "https://api.commvoice.ai/v1/calls"
 ```
-
-```bash Get Agent Performance
-curl -H "Authorization: Bearer YOUR_API_KEY" \
-     -H "Content-Type: application/json" \
-     "https://api.commvoice.ai/v1/agents/performance?date_range=last_7_days"
-```
-
-```bash Run Classification
-curl -X POST \
-     -H "Authorization: Bearer YOUR_API_KEY" \
-     -H "Content-Type: application/json" \
-     -d '{"call_ids": ["call_123", "call_456"], "prompt": "custom_prompt"}' \
-     "https://api.commvoice.ai/v1/classifications/run"
-```
-
-```javascript JavaScript SDK
-const commvoice = new CommVoice({
-  apiKey: 'YOUR_API_KEY',
-  baseURL: 'https://api.commvoice.ai/v1'
-});
-
-const calls = await commvoice.calls.list({
-  limit: 10,
-  fromDate: '2024-01-01'
-});
-```
-</CodeGroup>
 
 ## Rate Limiting
 
-### Limits by Plan
+The CommVoice API uses rate limiting to ensure a high level of performance for all users. The specific rate limits depend on your plan. You can find information about your current rate limit status in the headers of each API response.
 
-| Plan | Requests/Minute | Requests/Day | Burst Limit |
-|------|----------------|--------------|-------------|
-| **Business** | 100 | 10,000 | 200 |
-| **Enterprise** | 500 | 50,000 | 1,000 |
-| **Custom** | Negotiable | Negotiable | Negotiable |
-
-### Rate Limit Headers
-
-API responses include rate limit information:
-
-```http
-X-RateLimit-Limit: 100
-X-RateLimit-Remaining: 87
-X-RateLimit-Reset: 1640995200
-X-RateLimit-Retry-After: 60
-```
-
-### Handling Rate Limits
-
-<CodeGroup>
-```javascript Retry Logic
-async function makeAPIRequest(url, options) {
-  try {
-    const response = await fetch(url, options);
-    
-    if (response.status === 429) {
-      const retryAfter = response.headers.get('X-RateLimit-Retry-After');
-      await new Promise(resolve => setTimeout(resolve, retryAfter * 1000));
-      return makeAPIRequest(url, options); // Retry
-    }
-    
-    return response;
-  } catch (error) {
-    console.error('API request failed:', error);
-    throw error;
-  }
-}
-```
-
-```python Python Example
-import time
-import requests
-
-def api_request_with_retry(url, headers, max_retries=3):
-    for attempt in range(max_retries):
-        response = requests.get(url, headers=headers)
-        
-        if response.status_code == 429:
-            retry_after = int(response.headers.get('X-RateLimit-Retry-After', 60))
-            time.sleep(retry_after)
-            continue
-            
-        return response
-    
-    raise Exception(f"Max retries ({max_retries}) exceeded")
-```
-</CodeGroup>
-
-## Security Best Practices
-
-### API Key Security
-
-<AccordionGroup>
-  <Accordion title="Environment Variables">
-    Store API keys in environment variables, never in code:
-    
-    ```bash
-    # .env file
-    COMMVOICE_API_KEY=sk_live_your_actual_key_here
-    ```
-    
-    ```javascript
-    // Use in code
-    const apiKey = process.env.COMMVOICE_API_KEY;
-    ```
-  </Accordion>
-  
-  <Accordion title="Secrets Management">
-    Use dedicated secrets management for production:
-    
-    - **AWS Secrets Manager**
-    - **Azure Key Vault** 
-    - **Google Secret Manager**
-    - **HashiCorp Vault**
-    - **Docker Secrets**
-  </Accordion>
-  
-  <Accordion title="Network Security">
-    **HTTPS Only**: All API requests must use HTTPS
-    
-    **IP Allowlisting**: Restrict API access to specific IP addresses
-    
-    **Firewall Rules**: Configure network-level access controls
-  </Accordion>
-</AccordionGroup>
-
-### Monitoring and Alerts
-
-<CardGroup cols={2}>
-  <Card title="Usage Monitoring" icon="chart-bar">
-    Track API usage patterns and identify unusual activity through the dashboard.
-  </Card>
-  
-  <Card title="Security Alerts" icon="shield-exclamation">
-    Get notified immediately of suspicious access patterns or unauthorized attempts.
-  </Card>
-  
-  <Card title="Audit Logs" icon="document-text">
-    Review detailed logs of all API access including timestamps and IP addresses.
-  </Card>
-  
-  <Card title="Key Rotation" icon="arrow-path">
-    Set up automated alerts to remind you when it's time to rotate API keys.
-  </Card>
-</CardGroup>
-
-## Error Handling
-
-### Common HTTP Status Codes
-
-| Code | Meaning | Action |
-|------|---------|--------|
-| **200** | Success | Request completed successfully |
-| **400** | Bad Request | Check request parameters and format |
-| **401** | Unauthorized | Verify API key or token validity |
-| **403** | Forbidden | Check API key permissions/scopes |
-| **404** | Not Found | Verify resource exists and URL is correct |
-| **429** | Rate Limited | Implement retry logic with backoff |
-| **500** | Server Error | Contact support if persistent |
-
-### Error Response Format
-
-```json
-{
-  "error": {
-    "code": "invalid_request",
-    "message": "The request is missing required parameters",
-    "details": {
-      "missing_fields": ["from_date", "to_date"]
-    },
-    "request_id": "req_1234567890abcdef"
-  }
-}
-```
-
-## Testing Your Integration
-
-### Test Environment
-
-CommVoice provides a sandbox environment for testing:
-
-- **Base URL**: `https://api-sandbox.commvoice.ai/v1`
-- **Test Data**: Pre-populated with sample calls and data
-- **No Charges**: Testing doesn't count against rate limits or billing
-- **Separate Keys**: Use different API keys for sandbox testing
-
-### Validation Checklist
-
-<AccordionGroup>
-  <Accordion title="Authentication">
-    - [ ] API key authentication works correctly
-    - [ ] Error handling for invalid credentials
-    - [ ] Proper header formatting
-    - [ ] Rate limit handling implemented
-  </Accordion>
-  
-  <Accordion title="Data Access">
-    - [ ] Can retrieve call data successfully
-    - [ ] Filtering and pagination work correctly
-    - [ ] Date range queries return expected results
-    - [ ] Error responses are handled gracefully
-  </Accordion>
-  
-  <Accordion title="Security">
-    - [ ] API keys stored securely
-    - [ ] HTTPS used for all requests
-    - [ ] No credentials in logs or version control
-    - [ ] Proper error logging without exposing keys
-  </Accordion>
-</AccordionGroup>
-
-## Next Steps
-
-<CardGroup cols={2}>
-  <Card title="Calls API" icon="phone" href="/api-reference/calls/list">
-    Learn how to retrieve and filter call data through the API.
-  </Card>
-  
-  <Card title="Classification API" icon="brain" href="/api-reference/classification/run">
-    Run AI classifications programmatically and retrieve results.
-  </Card>
-  
-  <Card title="Agents API" icon="users" href="/api-reference/agents/list">
-    Access agent performance data and team analytics.
-  </Card>
-  
-  <Card title="Webhooks" icon="bolt" href="/integrations/webhooks">
-    Set up real-time notifications for call events and classifications.
-  </Card>
-</CardGroup> 
+By following these simple steps, you can securely authenticate with the CommVoice API and start building powerful integrations. 

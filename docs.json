@@ -3,11 +3,21 @@
   "theme": "mint",
   "name": "CommVoice Documentation",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#8F62FF",
+    "light": "#E6ECEF",
+    "dark": "#0A1C44"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "favicon.png",
+  "servers": [
+    {
+      "url": "https://api.commvoice.ai/v1",
+      "description": "Production API"
+    },
+    {
+      "url": "https://api-staging.commvoice.ai/v1",
+      "description": "Staging API"
+    }
+  ],
   "navigation": {
     "tabs": [
       {
@@ -83,32 +93,10 @@
         "tab": "API Reference",
         "groups": [
           {
-            "group": "Authentication",
-            "pages": [
-              "api-reference/authentication"
-            ]
-          },
-          {
-            "group": "Calls API",
-            "pages": [
-              "api-reference/calls/list",
-              "api-reference/calls/details",
-              "api-reference/calls/dashboard"
-            ]
-          },
-          {
-            "group": "Agents API",
-            "pages": [
-              "api-reference/agents/list",
-              "api-reference/agents/performance"
-            ]
-          },
-          {
-            "group": "Classification API",
-            "pages": [
-              "api-reference/classification/run",
-              "api-reference/classification/results"
-            ]
+            "group": "Endpoints",
+            "openapi": {
+              "source": "https://api.comm.com/docs/api.json"
+            }
           }
         ]
       }
@@ -117,7 +105,7 @@
       "anchors": [
         {
           "anchor": "Support",
-          "href": "mailto:support@commvoice.ai",
+          "href": "mailto:hello@commvoice.ai",
           "icon": "envelope"
         },
         {
@@ -134,14 +122,14 @@
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "https://app.commvoice.ai/commvoice-logo.svg",
+    "dark": "https://app.commvoice.ai/commvoice-logo.svg"
   },
   "navbar": {
     "links": [
       {
         "label": "Support",
-        "href": "mailto:support@commvoice.ai"
+        "href": "mailto:hello@commvoice.ai"
       }
     ],
     "primary": {
@@ -152,9 +140,7 @@
   },
   "footer": {
     "socials": {
-      "website": "https://commvoice.ai",
-      "github": "https://github.com/commvoice",
-      "linkedin": "https://linkedin.com/company/commvoice"
+      "website": "https://commvoice.ai"
     }
   }
 }
