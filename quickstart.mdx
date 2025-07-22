@@ -13,7 +13,7 @@ First, create an AI agent with a unique personality and voice. You'll also provi
     2.  Define your agent's personality, voice, and conversation style.
     3.  Give your agent a name and a role (e.g., "Sales Development Rep").
   </Accordion>
-  <Accordion icon="script-text" title="Configure conversation scripts">
+  <Accordion icon="book" title="Configure conversation scripts">
     1.  Set your opening script and key talking points.
     2.  Configure responses to common objections.
     3.  Define the qualification questions the agent should ask.
@@ -28,7 +28,7 @@ Next, create a campaign and upload the list of contacts you want your AI agent t
   <Accordion icon="users" title="Upload your prospect list">
     Upload a CSV file or sync with your CRM to import your contacts. Be sure to include phone numbers and any other relevant information that can help the AI personalize the conversation.
   </Accordion>
-  <Accordion icon="target" title="Define campaign objectives">
+  <Accordion icon="bullseye" title="Define campaign objectives">
     Choose the goal of your campaign (e.g., lead qualification, appointment setting) and set the criteria for a successful outcome.
   </Accordion>
 </AccordionGroup>
@@ -47,3 +47,43 @@ With your agent and campaign configured, you're ready to launch. Start with a sm
 ## 4. Analyze and Optimize
 
 Once your campaign is running, use the CommVoice dashboard to track its performance and identify opportunities for optimization. Review call recordings, analyze conversation transcripts, and A/B test different scripts to continuously improve your results.
+
+## Frequently Asked Questions
+
+<AccordionGroup>
+  <Accordion icon="phone" title="How do we connect VoIP?">
+    We offer two options:
+
+    **Use our VoIP service:**  
+    We can provide a fully managed VoIP service, ready to use, without requiring setup on your side.
+
+    **Connect to your SIP trunk:**  
+    If you have your own VoIP infrastructure, we can integrate directly with your SIP trunk. Just share your SIP connection details, as SIP is the default protocol we use for handling outbound calls.
+
+    <Warning>
+    **Important:** You'll need to whitelist the following IP addresses in your firewall:
+    - `44.229.228.186/32`
+    - `44.238.177.138/32`
+    - `172.31.9.106/32`
+    </Warning>
+
+    In both cases, our team can coordinate with your IT to ensure smooth setup and testing.
+  </Accordion>
+
+  <Accordion icon="bullseye" title="What leads are best to work on?">
+    Both live campaign leads and old leads work well. You know your audience better – use what you feel will perform.
+  </Accordion>
+
+  <Accordion icon="chart-bar" title="How many leads should we test?">
+    Testing with 1,000 leads should give us a solid indication of performance.
+  </Accordion>
+
+  <Accordion icon="wrench" title="How do we improve the AI bot? How can we monitor its performance?">
+    We analyze early-stage data to find key improvement areas:
+
+    - **Call answer rates** (influenced by caller ID or call timing)
+    - **Early hang-ups** (often linked to the opening message)
+    - Our system can run split-tests, but your team's business insights are crucial for optimization
+    - Regularly listening to calls helps confirm the bot is performing as expected
+  </Accordion>
+</AccordionGroup>
