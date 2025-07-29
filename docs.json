@@ -58,7 +58,8 @@
               "calls/viewing-calls",
               "calls/call-details",
               "calls/filtering",
-              "calls/outcomes"
+              "calls/outcomes",
+              "calls/hlr-validation-setup"
             ]
           },
           {
@@ -92,6 +93,7 @@
       {
         "tab": "API Reference",
         "groups": [
+
           {
             "group": "Endpoints",
             "openapi": {

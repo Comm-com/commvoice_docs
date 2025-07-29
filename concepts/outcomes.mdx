@@ -54,8 +54,10 @@ Unlike SMS or email campaigns where you can pass tracking parameters through lin
 
 ### Tracking Lead Conversions
 
-To mark a call as a lead conversion, use the [Conversion Pixel API](/api-reference/conversionpixel/post-v1webhooksconversion-pixel):
+To mark a call as a lead conversion, you can use either POST or GET requests with the [Conversion Pixel API](/api-reference/conversionpixel/post-v1webhooksconversion-pixel):
 
+<Tabs>
+<Tab title="POST Request">
 ```bash
 curl --request POST \
 --url https://api.comm.com/api/v1/webhooks/conversion-pixel \
@@ -68,11 +70,23 @@ curl --request POST \
   "event_type": "lead"
 }'
 ```
+</Tab>
+
+<Tab title="GET Request">
+```bash
+curl --request GET \
+--url 'https://api.comm.com/api/v1/webhooks/conversion-pixel?phone_number=<string>&team_id=<string>&object_type=voice_call&event_type=lead' \
+--header 'Authorization: Bearer <token>'
+```
+</Tab>
+</Tabs>
 
 ### Tracking Sales Conversions
 
-For sales events, you can also include the profit amount using the `event_profit` parameter:
+For sales events, you can also include the profit amount using the `event_profit` parameter with both POST and GET requests:
 
+<Tabs>
+<Tab title="POST Request">
 ```bash
 curl --request POST \
 --url https://api.comm.com/api/v1/webhooks/conversion-pixel \
@@ -86,6 +100,16 @@ curl --request POST \
   "event_profit": 99
 }'
 ```
+</Tab>
+
+<Tab title="GET Request">
+```bash
+curl --request GET \
+--url 'https://api.comm.com/api/v1/webhooks/conversion-pixel?phone_number=<string>&team_id=<string>&object_type=voice_call&event_type=sale&event_profit=99' \
+--header 'Authorization: Bearer <token>'
+```
+</Tab>
+</Tabs>
 
 ### Finding Your Team ID
 

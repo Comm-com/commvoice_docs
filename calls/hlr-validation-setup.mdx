@@ -1,0 +1,259 @@
+---
+title: "Setting Up HLR Validation"
+description: "Step-by-step guide to configure HLR validation for your voice campaigns to improve call success rates and reduce costs."
+---
+
+## Overview
+
+HLR (Home Location Register) validation helps you verify phone number reachability before making calls, significantly improving your campaign performance and reducing wasted resources on inactive numbers.
+
+<Info>
+HLR validation is available for all voice campaigns and can be configured at the campaign level with customizable retry logic.
+</Info>
+
+## Enabling HLR Validation
+
+<Steps>
+  <Step title="Access Voice Campaign Settings">
+    Navigate to your voice campaign and click on the **Voice Agent** configuration step in the campaign wizard.
+  </Step>
+  <Step title="Locate HLR Validation Section">
+    Scroll down to find the **HLR Validation** section below the Numbers and Agents configuration.
+  </Step>
+  <Step title="Configure HLR Settings">
+    Click the **Configure** button to open the HLR validation settings modal.
+    
+    <Frame>
+    <img src="/images/hlr-validation-section.png" alt="HLR Validation section in voice campaign settings" />
+    </Frame>
+  </Step>
+  <Step title="Enable Auto HLR Validation">
+    Toggle the **Auto HLR Validation** switch to enable pre-call number verification.
+    
+    <Check>
+    Once enabled, all numbers will be validated before dialing attempts.
+    </Check>
+  </Step>
+</Steps>
+
+## Configuring Retry Logic
+
+When HLR validation is enabled, you can set up intelligent retry logic to handle temporarily unreachable numbers:
+
+<Tabs>
+<Tab title="Basic Configuration">
+### Number of Retries
+Set how many times the system should retry failed calls (1-10 retries recommended).
+
+**Recommended Settings:**
+- **Lead Generation**: 3-5 retries
+- **Customer Service**: 2-3 retries  
+- **Sales Calls**: 4-6 retries
+
+### Delay Between Retries
+Configure the initial wait time before the first retry (1-60 minutes).
+
+**Best Practices:**
+- **Peak Hours**: 5-10 minute delays
+- **Off-Peak Hours**: 2-5 minute delays
+- **Weekend Campaigns**: 10-15 minute delays
+</Tab>
+
+<Tab title="Advanced Timing">
+### Additional Time Increment
+Set how much extra time is added to each subsequent retry (0-30 minutes).
+
+**Example Configuration:**
+- Retries: 5
+- Initial Delay: 2 minutes  
+- Increment: 3 minutes
+
+**Resulting Schedule:**
+- Retry 1: 2 minutes after initial failure
+- Retry 2: 5 minutes after initial failure (2+3)
+- Retry 3: 8 minutes after initial failure (2+6)
+- Retry 4: 11 minutes after initial failure (2+9)
+- Retry 5: 14 minutes after initial failure (2+12)
+
+<Tip>
+Progressive delays help avoid network congestion and improve success rates for temporarily unavailable numbers.
+</Tip>
+</Tab>
+</Tabs>
+
+## Understanding HLR Status Indicators
+
+The HLR validation section displays the current status with color-coded badges:
+
+<CardGroup cols={2}>
+<Card title="Enabled" icon="check-circle" color="green">
+  HLR validation is active for this campaign. Numbers will be verified before calling.
+</Card>
+
+<Card title="Disabled" icon="x-circle" color="gray">
+  HLR validation is not active. All numbers will be called without pre-verification.
+</Card>
+</CardGroup>
+
+## Viewing HLR History
+
+Track your HLR validation performance by accessing the history:
+
+<Steps>
+  <Step title="Open HLR Settings">
+    Click **Configure** in the HLR Validation section.
+  </Step>
+  <Step title="Access History">
+    Click **View HLR History** button at the bottom of the settings modal.
+  </Step>
+  <Step title="Analyze Results">
+    Review the history table showing:
+    - Request ID and timestamp
+    - Phone number and validation status
+    - Carrier response details
+    - Success/failure indicators
+  </Step>
+  <Step title="View Raw Responses">
+    Click **View Raw** for any entry to see the complete HLR response data including carrier information, porting status, and technical details.
+  </Step>
+</Steps>
+
+## HLR Analytics Dashboard
+
+Monitor your HLR validation performance with comprehensive analytics:
+
+<Tabs>
+<Tab title="Overview Metrics">
+### Key Performance Indicators
+- **Total Requests**: All HLR validations performed
+- **Success Rate**: Percentage of numbers validated as active
+- **Average Response Time**: Speed of validation queries
+- **Total Cost**: Investment in HLR validation
+- **ROI**: Return on investment from improved targeting
+
+### Cost Analysis
+- **Cost per Request**: Average price per HLR validation
+- **Total Savings**: Money saved from avoiding failed calls
+- **Failed Call Prevention**: Number of unsuccessful calls avoided
+</Tab>
+
+<Tab title="Retry Performance">
+### Retry Logic Effectiveness
+- **Retry Success Rate**: How often retries result in successful connections
+- **Average Retries per Call**: Typical number of attempts needed
+- **Optimal Retry Timing**: Best-performing delay configurations
+- **Cost of Retries**: Investment in retry attempts
+
+### Time-Based Analysis
+- **Peak Performance Hours**: Times with highest success rates
+- **Retry Delay Optimization**: Most effective timing strategies
+- **Carrier Response Patterns**: Performance by network provider
+</Tab>
+
+<Tab title="Carrier Insights">
+### Network Performance
+- **Success Rates by Carrier**: Compare performance across networks
+- **Response Times**: Speed differences between carriers
+- **Geographic Patterns**: Regional performance variations
+- **Porting Impact**: Effect of number portability on success rates
+
+### Strategic Insights
+- **Best Performing Carriers**: Networks with highest success rates
+- **Optimization Opportunities**: Areas for improvement
+- **Cost-Effectiveness**: Most efficient validation strategies
+</Tab>
+</Tabs>
+
+## Best Practices for HLR Validation
+
+<AccordionGroup>
+<Accordion title="Optimal Configuration Settings">
+**For High-Volume Campaigns:**
+- Enable HLR validation for all numbers
+- Use 3-5 retries with 2-3 minute initial delays
+- Monitor costs and adjust retry limits as needed
+
+**For Targeted Campaigns:**
+- Validate premium/high-value prospects
+- Use longer retry delays (5-10 minutes) for better success rates
+- Focus on quality over quantity
+
+**For Time-Sensitive Campaigns:**
+- Use shorter retry windows (1-2 retries max)
+- Prioritize immediate responses over comprehensive validation
+- Monitor real-time performance metrics
+</Accordion>
+
+<Accordion title="Cost Management">
+**Budget Control:**
+- Set daily/monthly HLR validation limits
+- Monitor cost per validation in analytics
+- Balance validation costs against improved success rates
+
+**ROI Optimization:**
+- Track savings from prevented failed calls
+- Calculate cost-benefit ratio regularly
+- Adjust retry logic based on performance data
+
+**Efficiency Tips:**
+- Validate contact lists during off-peak hours when possible
+- Remove consistently failing numbers from campaigns
+- Use analytics to identify optimal validation strategies
+</Accordion>
+
+<Accordion title="Performance Monitoring">
+**Regular Review Schedule:**
+- Check HLR analytics weekly for campaign optimization
+- Monitor carrier performance trends monthly
+- Adjust retry logic based on success rate patterns
+
+**Key Metrics to Track:**
+- Connection rate improvements from HLR validation
+- Cost per successful connection comparison
+- Time savings from avoiding failed calls
+- Overall campaign ROI impact
+
+**Troubleshooting Indicators:**
+- Sudden drops in validation success rates
+- Unexpected increases in validation costs
+- Poor retry performance patterns
+</Accordion>
+</AccordionGroup>
+
+## Common Issues and Solutions
+
+<Warning>
+**High Validation Costs**: If HLR costs are unexpectedly high, check your retry settings and consider reducing the number of attempts or increasing delays between retries.
+</Warning>
+
+### Troubleshooting Guide
+
+**Issue: Low HLR Success Rates**
+- **Cause**: Outdated contact data or poor data sources
+- **Solution**: Audit data quality and update contact acquisition processes
+
+**Issue: Poor Retry Performance**
+- **Cause**: Retry delays too short or network congestion
+- **Solution**: Increase retry intervals and spread attempts across time periods
+
+**Issue: Inconsistent Carrier Results**
+- **Cause**: Carrier-specific technical issues or network problems
+- **Solution**: Contact support with carrier details and HLR response logs
+
+<Check>
+Most HLR validation issues can be resolved by adjusting retry timing or improving contact data quality.
+</Check>
+
+## Integration with Campaign Workflow
+
+HLR validation integrates seamlessly with your existing voice campaign process:
+
+1. **Campaign Launch**: HLR validation begins automatically when campaign starts
+2. **Real-Time Processing**: Numbers are validated immediately before each dial attempt  
+3. **Automatic Retry Handling**: Failed validations are queued for retry according to your settings
+4. **Analytics Integration**: All validation data appears in campaign performance reports
+5. **Cost Tracking**: HLR costs are included in overall campaign cost analysis
+
+<Tip>
+Enable HLR validation early in your campaign setup to ensure optimal performance from the first call.
+</Tip> 
