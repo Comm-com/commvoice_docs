@@ -86,4 +86,34 @@ Once your campaign is running, use the CommVoice dashboard to track its performa
     - Our system can run split-tests, but your team's business insights are crucial for optimization
     - Regularly listening to calls helps confirm the bot is performing as expected
   </Accordion>
+
+  <Accordion icon="network-wired" title="How do we troubleshoot SIP trunk connection issues?">
+    If you're experiencing connection problems with your SIP trunk, you can test the connection using Zoiper from your local machine:
+
+    <Steps>
+      <Step title="Download and install Zoiper">
+        Download Zoiper (free SIP client) from [zoiper.com](https://www.zoiper.com) and install it on your computer.
+      </Step>
+      
+      <Step title="Configure Zoiper with your SIP credentials">
+        In Zoiper, add a new SIP account using your SIP trunk credentials:
+        - SIP server/domain
+        - Username
+        - Password
+        - Port (usually 5060 for SIP)
+      </Step>
+      
+      <Step title="Test the connection">
+        Try making a test call through Zoiper to verify your SIP trunk is working properly. If Zoiper can connect and make calls, the issue may be with the CommVoice integration rather than your SIP trunk.
+      </Step>
+      
+      <Step title="Check firewall settings">
+        Ensure your firewall allows SIP traffic on the required ports and that the CommVoice IP addresses are whitelisted.
+      </Step>
+    </Steps>
+
+    <Tip>
+    If Zoiper connects successfully but CommVoice still can't connect, contact our support team with your SIP trunk details for further troubleshooting.
+    </Tip>
+  </Accordion>
 </AccordionGroup>
