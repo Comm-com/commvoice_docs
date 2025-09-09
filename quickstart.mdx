@@ -3,54 +3,282 @@ title: "Quick Start Guide"
 description: "Set up your first AI calling campaign and start generating qualified leads in minutes."
 ---
 
+## Prerequisites
+
+Before you begin, make sure you have:
+- A CommVoice account with access to the dashboard
+- Your contact list ready (CSV format recommended)
+- VoIP connection configured (we can help with setup)
+
+<Info>
+**Estimated time to complete:** 15-30 minutes for initial setup, plus time for testing and optimization.
+</Info>
+
 ## 1. Configure Your AI Agent
 
 First, create an AI agent with a unique personality and voice. You'll also provide it with the knowledge it needs to have intelligent conversations with your customers.
 
 <AccordionGroup>
   <Accordion icon="robot" title="Create your AI agent persona">
-    1.  Navigate to "AI Agents" in your CommVoice dashboard.
-    2.  Define your agent's personality, voice, and conversation style.
-    3.  Give your agent a name and a role (e.g., "Sales Development Rep").
+    <Steps>
+      <Step title="Navigate to AI Agents">
+        Go to [AI Agents](https://app.commvoice.ai/agents/agents) in your CommVoice dashboard.
+      </Step>
+      
+      <Step title="Create a new agent">
+        Click "Create Agent" and give your agent a name and role (e.g., "Sales Development Rep").
+      </Step>
+      
+      <Step title="Define personality and voice">
+        Configure your agent's personality, voice tone, and conversation style to match your brand.
+      </Step>
+    </Steps>
+    
+    <Tip>
+    **Time estimate:** 5-10 minutes. Start with a clear role definition - this helps the AI understand its purpose.
+    </Tip>
   </Accordion>
+  
   <Accordion icon="book" title="Configure conversation scripts">
-    1.  Set your opening script and key talking points.
-    2.  Configure responses to common objections.
-    3.  Define the qualification questions the agent should ask.
+    <Steps>
+      <Step title="Set your opening script">
+        Write a compelling opening that introduces your agent and the purpose of the call.
+      </Step>
+      
+      <Step title="Add key talking points">
+        Include your main value propositions and key messages you want to communicate.
+      </Step>
+      
+      <Step title="Configure objection handling">
+        Prepare responses to common objections like "I'm not interested" or "I'm too busy."
+      </Step>
+      
+      <Step title="Define qualification questions">
+        Set up questions to identify qualified leads and gather important information.
+      </Step>
+    </Steps>
+    
+    <Tip>
+    **Time estimate:** 10-15 minutes. Keep scripts natural and conversational - avoid sounding robotic.
+    </Tip>
   </Accordion>
 </AccordionGroup>
 
 ## 2. Set Up Your Campaign
 
-Next, create a campaign and upload the list of contacts you want your AI agent to call.
+Next, create a campaign and define your objectives for the AI calling campaign.
 
 <AccordionGroup>
-  <Accordion icon="users" title="Upload your prospect list">
-    Upload a CSV file or sync with your CRM to import your contacts. Be sure to include phone numbers and any other relevant information that can help the AI personalize the conversation.
+  <Accordion icon="bullseye" title="Create your campaign">
+    <Steps>
+      <Step title="Navigate to Campaigns">
+        Go to [Campaigns](https://app.commvoice.ai/agents/campaigns) in your CommVoice dashboard.
+      </Step>
+      
+      <Step title="Create a new campaign">
+        Click "Create Campaign" and give it a descriptive name.
+      </Step>
+      
+      <Step title="Select your AI agent">
+        Choose the agent you created in step 1 to handle the calls.
+      </Step>
+      
+      <Step title="Set campaign objectives">
+        Define your goal (e.g., lead qualification, appointment setting, market research).
+      </Step>
+    </Steps>
+    
+    <Tip>
+    **Time estimate:** 3-5 minutes. Be specific about your objectives - this helps measure success later.
+    </Tip>
   </Accordion>
-  <Accordion icon="bullseye" title="Define campaign objectives">
-    Choose the goal of your campaign (e.g., lead qualification, appointment setting) and set the criteria for a successful outcome.
+  
+  <Accordion icon="clock" title="Configure call settings">
+    <Steps>
+      <Step title="Set call schedule">
+        Choose when your AI agent should make calls (business hours, time zones).
+      </Step>
+      
+      <Step title="Define call volume limits">
+        Set daily/hourly limits to manage call volume and avoid overwhelming your prospects.
+      </Step>
+      
+      <Step title="Configure success criteria">
+        Define what constitutes a successful call outcome for your campaign.
+      </Step>
+    </Steps>
+    
+    <Warning>
+    **Important:** Always start with conservative call limits and increase gradually as you optimize performance.
+    </Warning>
   </Accordion>
 </AccordionGroup>
 
-## 3. Launch and Monitor
+## 3. Add Contacts
+
+Before launching your campaign, you need to add contacts to your CommVoice platform. You have two options for importing your contact data:
+
+<AccordionGroup>
+  <Accordion icon="upload" title="Upload CSV file via dashboard">
+    The easiest way to add contacts is through the web interface:
+    
+    <Steps>
+      <Step title="Navigate to the uploads page">
+        Go to [https://app.commvoice.ai/audience/uploads](https://app.commvoice.ai/audience/uploads) in your browser.
+      </Step>
+      
+      <Step title="Prepare your CSV file">
+        Ensure your CSV file includes the following columns:
+        - Phone numbers (required)
+        - Contact names
+        - Email addresses
+        - Any custom fields you want to track
+      </Step>
+      
+      <Step title="Upload and map fields">
+        Upload your CSV file and map the columns to the appropriate contact fields in the platform.
+      </Step>
+    </Steps>
+    
+    <Tip>
+    This method is perfect for one-time imports or when you have a static list of contacts to add.
+    </Tip>
+  </Accordion>
+  
+  <Accordion icon="code" title="Use the API endpoint">
+    For automated integrations or real-time contact updates, use our webhook API endpoint.
+    
+    <Info>
+    View the complete API documentation at [/api-reference/audiencefeeds/post-v1webhooksaudiencefeed](/api-reference/audiencefeeds/post-v1webhooksaudiencefeed) for detailed parameter information and examples.
+    </Info>
+    
+    <Tip>
+    This method is ideal for CRM integrations, automated lead capture, or real-time contact synchronization.
+    </Tip>
+  </Accordion>
+</AccordionGroup>
+
+## 4. Launch and Monitor
 
 With your agent and campaign configured, you're ready to launch. Start with a small test batch to ensure everything is working as expected, then scale up to your full contact list.
 
-<Accordion icon="rocket" title="Start your AI calling campaign">
-  1.  Review your campaign settings.
-  2.  Start with a small test batch of 10-20 calls.
-  3.  Monitor the initial results in the dashboard.
-  4.  Scale up to your full contact list.
-</Accordion>
+<AccordionGroup>
+  <Accordion icon="rocket" title="Launch your campaign">
+    <Steps>
+      <Step title="Review campaign settings">
+        Double-check your agent selection, call schedule, and volume limits before launching.
+      </Step>
+      
+      <Step title="Start with a test batch">
+        Launch with 10-20 contacts first to test your setup and scripts.
+      </Step>
+      
+      <Step title="Monitor initial results">
+        Watch the first few calls in real-time and review call recordings.
+      </Step>
+      
+      <Step title="Scale up gradually">
+        Once you're satisfied with performance, increase to your full contact list.
+      </Step>
+    </Steps>
+    
+    <Warning>
+    **Critical:** Never launch with your full contact list without testing first. Always start small!
+    </Warning>
+  </Accordion>
+  
+  <Accordion icon="chart-line" title="Monitor performance">
+    <Steps>
+      <Step title="Track key metrics">
+        Monitor call answer rates, conversation duration, and success rates.
+      </Step>
+      
+      <Step title="Review call recordings">
+        Listen to sample calls to ensure your agent is performing as expected.
+      </Step>
+      
+      <Step title="Check for issues">
+        Look for early hang-ups, poor conversation flow, or technical problems.
+      </Step>
+    </Steps>
+    
+    <Tip>
+    **Time estimate:** 5-10 minutes daily. Regular monitoring helps you catch and fix issues quickly.
+    </Tip>
+  </Accordion>
+</AccordionGroup>
 
-## 4. Analyze and Optimize
+## 5. Analyze and Optimize
 
-Once your campaign is running, use the CommVoice dashboard to track its performance and identify opportunities for optimization. Review call recordings, analyze conversation transcripts, and A/B test different scripts to continuously improve your results.
+Once your campaign is running, use the CommVoice dashboard to track its performance and identify opportunities for optimization.
+
+<AccordionGroup>
+  <Accordion icon="chart-bar" title="Track key performance indicators">
+    Monitor these essential metrics to measure success:
+    
+    - **Answer Rate:** Percentage of calls that are answered (aim for 15-25%)
+    - **Conversation Duration:** Average length of successful conversations
+    - **Success Rate:** Percentage of calls that achieve your defined objectives
+    - **Lead Quality:** Quality of leads generated based on your criteria
+    
+    <Tip>
+    **Benchmark expectations:** Most campaigns see 15-25% answer rates and 5-15% success rates initially.
+    </Tip>
+  </Accordion>
+  
+  <Accordion icon="cogs" title="Optimize based on data">
+    <Steps>
+      <Step title="Review call recordings">
+        Listen to both successful and unsuccessful calls to identify patterns.
+      </Step>
+      
+      <Step title="Analyze conversation transcripts">
+        Look for common objections, questions, or conversation flow issues.
+      </Step>
+      
+      <Step title="A/B test improvements">
+        Test different opening scripts, objection responses, or qualification questions.
+      </Step>
+      
+      <Step title="Adjust call timing">
+        Optimize when calls are made based on answer rate data.
+      </Step>
+    </Steps>
+    
+    <Info>
+    **Timeline:** Allow 1-2 weeks of data collection before making major optimizations.
+    </Info>
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+<Card title="Advanced Features" icon="rocket" href="/user-guide/advanced-features">
+  Explore advanced AI agent capabilities, custom integrations, and automation workflows.
+</Card>
+
+<Card title="API Documentation" icon="code" href="/api-reference">
+  Integrate CommVoice with your existing systems using our comprehensive API.
+</Card>
+</CardGroup>
+
+<Check>
+**Congratulations!** You've successfully set up your first AI calling campaign. Remember to monitor performance regularly and optimize based on real-world results.
+</Check>
 
 ## Frequently Asked Questions
 
 <AccordionGroup>
+  <Accordion icon="clock" title="How long does the initial setup take?">
+    The complete setup typically takes 15-30 minutes, including:
+    - AI agent configuration: 10-15 minutes
+    - Campaign setup: 5-10 minutes  
+    - Contact upload: 5-10 minutes
+    
+    Allow additional time for testing and optimization.
+  </Accordion>
+
   <Accordion icon="phone" title="How do we connect VoIP?">
     We offer two options:
 
@@ -58,7 +286,7 @@ Once your campaign is running, use the CommVoice dashboard to track its performa
     We can provide a fully managed VoIP service, ready to use, without requiring setup on your side.
 
     **Connect to your SIP trunk:**  
-    If you have your own VoIP infrastructure, we can integrate directly with your SIP trunk. Just share your SIP connection details, as SIP is the default protocol we use for handling outbound calls.
+    If you have your own VoIP infrastructure, we can integrate directly with your SIP trunk. Just share your SIP connection details.
 
     <Warning>
     **Important:** You'll need to whitelist the following IP addresses in your firewall:
@@ -67,53 +295,50 @@ Once your campaign is running, use the CommVoice dashboard to track its performa
     - `172.31.9.106/32`
     </Warning>
 
-    In both cases, our team can coordinate with your IT to ensure smooth setup and testing.
+    <Info>
+    Our team can coordinate with your IT to ensure smooth setup and testing for either option.
+    </Info>
   </Accordion>
 
-  <Accordion icon="bullseye" title="What leads are best to work on?">
-    Both live campaign leads and old leads work well. You know your audience better – use what you feel will perform.
+  <Accordion icon="bullseye" title="What leads work best for AI calling?">
+    Both fresh leads and older leads can work well. Consider:
+    - **Fresh leads:** Higher engagement, but may be more expensive
+    - **Older leads:** Lower cost, but may have outdated contact information
+    - **Warm leads:** Previous customers or website visitors often perform best
+    
+    Start with what you know works for your business and test from there.
   </Accordion>
 
-  <Accordion icon="chart-bar" title="How many leads should we test?">
-    Testing with 1,000 leads should give us a solid indication of performance.
+  <Accordion icon="chart-bar" title="How many leads should I test initially?">
+    Start with a small test batch of 50-100 leads to:
+    - Validate your scripts and agent performance
+    - Identify any technical issues
+    - Establish baseline metrics
+    
+    Once you're satisfied with performance, scale up to larger batches of 500-1,000 leads.
   </Accordion>
 
-  <Accordion icon="wrench" title="How do we improve the AI bot? How can we monitor its performance?">
-    We analyze early-stage data to find key improvement areas:
+  <Accordion icon="wrench" title="How do I improve my AI agent's performance?">
+    Focus on these key areas for optimization:
 
-    - **Call answer rates** (influenced by caller ID or call timing)
-    - **Early hang-ups** (often linked to the opening message)
-    - Our system can run split-tests, but your team's business insights are crucial for optimization
-    - Regularly listening to calls helps confirm the bot is performing as expected
-  </Accordion>
-
-  <Accordion icon="network-wired" title="How do we troubleshoot SIP trunk connection issues?">
-    If you're experiencing connection problems with your SIP trunk, you can test the connection using Zoiper from your local machine:
-
-    <Steps>
-      <Step title="Download and install Zoiper">
-        Download Zoiper (free SIP client) from [zoiper.com](https://www.zoiper.com) and install it on your computer.
-      </Step>
-      
-      <Step title="Configure Zoiper with your SIP credentials">
-        In Zoiper, add a new SIP account using your SIP trunk credentials:
-        - SIP server/domain
-        - Username
-        - Password
-        - Port (usually 5060 for SIP)
-      </Step>
-      
-      <Step title="Test the connection">
-        Try making a test call through Zoiper to verify your SIP trunk is working properly. If Zoiper can connect and make calls, the issue may be with the CommVoice integration rather than your SIP trunk.
-      </Step>
-      
-      <Step title="Check firewall settings">
-        Ensure your firewall allows SIP traffic on the required ports and that the CommVoice IP addresses are whitelisted.
-      </Step>
-    </Steps>
+    - **Call answer rates:** Optimize caller ID and call timing
+    - **Conversation quality:** Improve opening scripts and objection handling
+    - **Success rates:** Refine qualification questions and success criteria
+    - **Lead quality:** Better targeting and contact list preparation
 
     <Tip>
-    If Zoiper connects successfully but CommVoice still can't connect, contact our support team with your SIP trunk details for further troubleshooting.
+    Regularly review call recordings and adjust scripts based on real conversations.
     </Tip>
+  </Accordion>
+
+  <Accordion icon="question-circle" title="What if I need help with setup?">
+    Our support team is here to help! You can:
+    - Contact support through the dashboard
+    - Schedule a setup consultation
+    - Access our knowledge base for detailed guides
+    
+    <Info>
+    Most setup issues can be resolved quickly with our team's assistance.
+    </Info>
   </Accordion>
 </AccordionGroup>
